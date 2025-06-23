@@ -6,21 +6,21 @@ class User(AbstractUser):
     username = models.CharField(
         unique=True,
         max_length=15,
-        verbose_name="Username",
+        verbose_name="username",
         help_text="Введите имя пользователя",
     )
     email = models.EmailField(
-        unique=True, verbose_name="Email", help_text="Введите адрес электронной почты"
+        unique=True, verbose_name="email", help_text="Введите адрес электронной почты"
     )
     city = models.CharField(
         max_length=30,
-        verbose_name="City",
+        verbose_name="city",
         help_text="Укажите город",
         blank=True,
         null=True,
     )
     avatar = models.ImageField(
-        upload_to="users/avatars", verbose_name="Avatar", null=True, blank=True
+        upload_to="users/avatars", verbose_name="avatar", null=True, blank=True
     )
 
     USERNAME_FIELD = "email"
