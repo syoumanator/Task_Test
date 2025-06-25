@@ -1,7 +1,13 @@
-from rest_framework import viewsets, permissions
 from django_filters.rest_framework import DjangoFilterBackend
-from appshop.models import Contact, Product, NetworkLink
-from appshop.serializers import ContactSerializer, ProductSerializer, NetworkLinkSerializer, NetworkLinkDetailSerializer
+from rest_framework import permissions, viewsets
+
+from appshop.models import Contact, NetworkLink, Product
+from appshop.serializers import (
+    ContactSerializer,
+    NetworkLinkDetailSerializer,
+    NetworkLinkSerializer,
+    ProductSerializer,
+)
 
 
 class IsStaffPermission(permissions.BasePermission):
@@ -23,12 +29,14 @@ class NetworkLinkViewSet(viewsets.ModelViewSet):
     permission_classes = [IsStaffPermission]
     # queryset = NetworkLink.objects.all()
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['contacts__country', 'type']
+    filterset_fields = ["contacts__country", "type"]
 
     def get_serializer_class(self):
-        if self.action == 'retrieve':
+        if self.action == "retrieve":
             return NetworkLinkDetailSerializer
         return NetworkLinkSerializer
 
     def get_queryset(self):
-        return NetworkLink.objects.select_related('contacts').prefetch_related('products')
+        return NetworkLink.objects.select_related("contacts").prefetch_related(
+            "products"
+        )

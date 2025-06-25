@@ -7,26 +7,82 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('appshop', '0001_initial'),
+        ("appshop", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='NetworkLink',
+            name="NetworkLink",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100, verbose_name='name')),
-                ('type', models.CharField(choices=[('factory', 'Завод'), ('retail', 'Розничная сеть'), ('entrepreneur', 'Индивидуальный предприниматель')], verbose_name='Type')),
-                ('credit', models.DecimalField(blank=True, decimal_places=2, max_digits=10, null=True, verbose_name='credit')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='created at')),
-                ('contacts', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='contacts', to='appshop.contact', verbose_name='contacts')),
-                ('products', models.ManyToManyField(related_name='products', to='appshop.product', verbose_name='products')),
-                ('provider', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='appshop.networklink', verbose_name='provider')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100, verbose_name="name")),
+                (
+                    "type",
+                    models.CharField(
+                        choices=[
+                            ("factory", "Завод"),
+                            ("retail", "Розничная сеть"),
+                            ("entrepreneur", "Индивидуальный предприниматель"),
+                        ],
+                        verbose_name="Type",
+                    ),
+                ),
+                (
+                    "credit",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        max_digits=10,
+                        null=True,
+                        verbose_name="credit",
+                    ),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(auto_now_add=True, verbose_name="created at"),
+                ),
+                (
+                    "contacts",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="contacts",
+                        to="appshop.contact",
+                        verbose_name="contacts",
+                    ),
+                ),
+                (
+                    "products",
+                    models.ManyToManyField(
+                        related_name="products",
+                        to="appshop.product",
+                        verbose_name="products",
+                    ),
+                ),
+                (
+                    "provider",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="appshop.networklink",
+                        verbose_name="provider",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Звено сети',
-                'verbose_name_plural': 'Звенья сети',
-                'ordering': ['name', 'type'],
+                "verbose_name": "Звено сети",
+                "verbose_name_plural": "Звенья сети",
+                "ordering": ["name", "type"],
             },
         ),
     ]

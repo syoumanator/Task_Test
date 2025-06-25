@@ -7,38 +7,56 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Contact',
+            name="Contact",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('email', models.EmailField(max_length=20, verbose_name='Email')),
-                ('country', models.CharField(max_length=20, verbose_name='Country')),
-                ('city', models.CharField(max_length=50, verbose_name='City')),
-                ('street', models.CharField(max_length=150, verbose_name='Street')),
-                ('house_number', models.PositiveSmallIntegerField(verbose_name='House number')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("email", models.EmailField(max_length=20, verbose_name="Email")),
+                ("country", models.CharField(max_length=20, verbose_name="Country")),
+                ("city", models.CharField(max_length=50, verbose_name="City")),
+                ("street", models.CharField(max_length=150, verbose_name="Street")),
+                (
+                    "house_number",
+                    models.PositiveSmallIntegerField(verbose_name="House number"),
+                ),
             ],
             options={
-                'verbose_name': 'Контакт',
-                'verbose_name_plural': 'Контакты',
-                'ordering': ['email', 'country'],
+                "verbose_name": "Контакт",
+                "verbose_name_plural": "Контакты",
+                "ordering": ["email", "country"],
             },
         ),
         migrations.CreateModel(
-            name='Product',
+            name="Product",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50, verbose_name='Name')),
-                ('model', models.CharField(max_length=50, verbose_name='Model')),
-                ('date_release', models.DateField(verbose_name='Date release')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50, verbose_name="Name")),
+                ("model", models.CharField(max_length=50, verbose_name="Model")),
+                ("date_release", models.DateField(verbose_name="Date release")),
             ],
             options={
-                'verbose_name': 'Продукт',
-                'verbose_name_plural': 'Продукты',
-                'ordering': ['name'],
+                "verbose_name": "Продукт",
+                "verbose_name_plural": "Продукты",
+                "ordering": ["name"],
             },
         ),
     ]

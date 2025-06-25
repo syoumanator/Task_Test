@@ -1,7 +1,8 @@
 from django.contrib import admin
-from appshop.models import Contact, Product, NetworkLink
 from django.urls import reverse
 from django.utils.html import format_html
+
+from appshop.models import Contact, NetworkLink, Product
 
 
 @admin.register(Contact)
@@ -37,13 +38,16 @@ class NetworkLinkAdmin(admin.ModelAdmin):
         "credit",
         "created_at",
     )
-    list_filter = ("name", "contacts__city",)
+    list_filter = (
+        "name",
+        "contacts__city",
+    )
     actions = ("credit_clear",)
     readonly_fields = ("provider_link",)
 
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
-        return queryset.select_related('contacts')
+        return queryset.select_related("contacts")
 
     def credit_clear(self, request, queryset):
         obj = queryset.update(credit=0)
@@ -55,7 +59,8 @@ class NetworkLinkAdmin(admin.ModelAdmin):
         if obj.provider:
             url = reverse("admin:appshop_networklink_change", args=[obj.provider.id])
             return format_html('<a href="{}">{}</a>', url, obj.provider.name)
-        return '_'
+        return "_"
+
     provider_link.short_description = "Ссылка поcтавщика"
 
     def products_list(self, obj):

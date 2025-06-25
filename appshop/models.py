@@ -38,14 +38,31 @@ class Product(models.Model):
 class NetworkLink(models.Model):
     """Модель звена сети"""
 
-    TYPE_CHOICES = [("factory", 'Завод'), ("retail", 'Розничная сеть'), ("entrepreneur", 'Индивидуальный предприниматель')]
+    TYPE_CHOICES = [
+        ("factory", "Завод"),
+        ("retail", "Розничная сеть"),
+        ("entrepreneur", "Индивидуальный предприниматель"),
+    ]
 
     name = models.CharField(max_length=100, verbose_name="name")
-    contacts = models.ForeignKey(Contact, on_delete=models.SET_NULL, related_name="contacts", verbose_name="contacts", blank=True, null=True)
+    contacts = models.ForeignKey(
+        Contact,
+        on_delete=models.SET_NULL,
+        related_name="contacts",
+        verbose_name="contacts",
+        blank=True,
+        null=True,
+    )
     type = models.CharField(choices=TYPE_CHOICES, verbose_name="Type")
-    products = models.ManyToManyField(Product, related_name="products", verbose_name="products")
-    provider = models.ForeignKey("self", on_delete=models.CASCADE, verbose_name="provider", blank=True, null=True)
-    credit = models.DecimalField( max_digits=10, decimal_places=2, verbose_name="credit", blank=True, null=True)
+    products = models.ManyToManyField(
+        Product, related_name="products", verbose_name="products"
+    )
+    provider = models.ForeignKey(
+        "self", on_delete=models.CASCADE, verbose_name="provider", blank=True, null=True
+    )
+    credit = models.DecimalField(
+        max_digits=10, decimal_places=2, verbose_name="credit", blank=True, null=True
+    )
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="created at")
 
     def __str__(self):

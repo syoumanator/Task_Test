@@ -22,7 +22,5 @@ class Command(BaseCommand):
         user.set_password(os.getenv("SU_password"))
         user.save()
         self.stdout.write(
-            self.style.SUCCESS(
-                f"Admin user created: {user.username}, {user.email}"
-            )
+            self.style.SUCCESS(f"Admin user created: {user.username}, {user.email}")
         )

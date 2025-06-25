@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from appshop.models import Contact, Product, NetworkLink
+from appshop.models import Contact, NetworkLink, Product
 
 
 class ContactSerializer(serializers.ModelSerializer):
@@ -23,8 +23,8 @@ class NetworkLinkSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = NetworkLink
-        read_only_fields = ['credit']
-        exclude = ['created_at']
+        read_only_fields = ["credit"]
+        exclude = ["created_at"]
 
 
 class NetworkLinkDetailSerializer(serializers.ModelSerializer):
@@ -33,5 +33,5 @@ class NetworkLinkDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = NetworkLink
-        fields = '__all__'
-        read_only_fields = ['credit']
+        fields = "__all__"
+        read_only_fields = ["credit"]
